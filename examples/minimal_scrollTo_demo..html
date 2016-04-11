@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<!--[if IE 8 ]><html lang="en" class="ie8"><![endif]-->
+<!--[if IE 9 ]><html lang="en" class="ie9"><![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html lang="en">
+<!--<![endif]-->
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<title>jQuery custom scrollbar demo</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<!-- stylesheet for demo and examples -->
+	<link rel="stylesheet" href="style.css">
+	<!--[if lt IE 9]>
+	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+	<![endif]-->
+	
+	<!-- custom scrollbar stylesheet -->
+	<link rel="stylesheet" href="../jquery.mCustomScrollbar.css">
+	
+</head>
+
+<body>
+	<header>
+		<a href="http://manos.malihu.gr/jquery-custom-content-scroller/" class="logo"><img src="logo.png" alt="jQuery custom scrollbar" /></a>
+		<hr />
+	</header>
+	
+	<div id="demo" class="showcase scrollTo-demo">
+		<section id="info">
+			<div class="scrollTo">
+				<ul>
+					<li><span>Content y &rarr;</span></li>
+					<li><a href="#" rel="content-y" data-scroll-to="p:eq(1)">1st paragraph</a></li>
+					<li><a href="#" rel="content-y" data-scroll-to="p:eq(2)">2nd paragraph</a></li>
+					<li><a href="#" rel="content-y" data-scroll-to="p:eq(3)">3rd paragraph</a></li>
+					<li><a href="#" rel="content-y" data-scroll-to="p:eq(4)">4th paragraph</a></li>
+					<li><a href="#" rel="content-y" data-scroll-to="p:eq(5)">5th paragraph</a></li>
+					<li><a href="#" rel="content-y" data-scroll-to="p:eq(6)">6th paragraph</a></li>
+					<li><a href="#" rel="content-y" data-scroll-to="p:eq(11)">11th paragraph</a></li>
+					<li><a href="#" rel="content-y" data-scroll-to="p:eq(12)">12th paragraph</a></li>
+					<li><a href="#" rel="content-y" data-scroll-to="p:eq(13)">13th paragraph</a></li>
+					<li><a href="#" rel="content-y" data-scroll-to="p:eq(14)">14th paragraph</a></li>
+					<li><a href="#" rel="content-y" data-scroll-to="p:eq(15)">15th paragraph</a></li>
+				</ul>
+			</div>
+			<p>Function called: <code>&nbsp;</code></p>
+		</section>
+		<section id="examples">
+			
+			<!-- content -->
+			<div class="content demo-y">
+				<h2>Content y</h2>
+				<hr />
+				<p>1st Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p> 
+				<p>2nd Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+				<p>3rd Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p> 
+				<p>4th Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p> 
+				<p>5th Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur?</p>
+				<p>6th Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
+				<p>7th At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio.</p> 
+				<p>8th Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.</p> 
+				<p>9th Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.</p>
+				<p>10th Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p> 
+				<p>11th Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+				<p>12th Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p> 
+				<p>13th Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p> 
+				<p>14th Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur?</p>
+				<hr />
+				<p>15th End of content.</p>
+			</div>
+			
+		</section>
+	</div>
+	
+	<footer>
+		<hr />
+		<p><a href="http://manos.malihu.gr/jquery-custom-content-scroller">Plugin home</a> <a href="https://github.com/malihu/malihu-custom-scrollbar-plugin">Project on Github</a> <a href="http://opensource.org/licenses/MIT">MIT License</a></p>
+	</footer>
+	
+	<!-- Google CDN jQuery with fallback to local -->
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script>window.jQuery || document.write('<script src="../js/minified/jquery-1.11.0.min.js"><\/script>')</script>
+	
+	<!-- custom scrollbar plugin -->
+	<script src="../jquery.mCustomScrollbar.concat.min.js"></script>
+	
+	<script>
+		(function($){
+			$(window).load(function(){
+				
+				$.mCustomScrollbar.defaults.theme="light-2"; //set "light-2" as the default theme
+				
+				$(".demo-y").mCustomScrollbar();
+				
+				$(".scrollTo a").click(function(e){
+					e.preventDefault();
+					var $this=$(this),
+						rel=$this.attr("rel"),
+						el= ".demo-y" ,
+						data=$this.data("scroll-to"),
+						href=$this.attr("href").split(/#(.+)/)[1],
+						to=data,
+						output=$("#info > p code"),
+						outputTXTdata=  "'"+data+"'",
+						outputTXThref= "'"+href+"'",
+						outputTXT="$('"+el+"').find('.mCSB_container').find("+outputTXTdata+")" ;
+					$(el).mCustomScrollbar("scrollTo",to);
+					output.text("$('"+el+"').mCustomScrollbar('scrollTo',"+outputTXT+");");
+				});
+				
+			});
+		})(jQuery);
+	</script>
+</body>
+</html>
