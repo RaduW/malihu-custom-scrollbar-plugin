@@ -1844,7 +1844,10 @@ and dependencies (minified).
 		},
 		/* -------------------- */
 		
-		
+        //TODO RaduW. 11.04.2016 ... before evaluating _childPos check weather minimal Scroll is necessary
+        //if minimalScroll then replace _childPos to something else
+        //probably enhance _childPos with a function that also takes a "minimalScroll" flag and act accordingly
+
 		/* translates values (e.g. "top", 100, "100px", "#id") to actual scroll-to positions */
 		_to=function(val,dir){
 			if(val==null || typeof val=="undefined"){return;}
