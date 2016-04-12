@@ -2330,10 +2330,24 @@ and dependencies (minified).
 		},
 		/* -------------------- */
 		
+        /*returns necerssary scroll position of an element*/
+        _necessaryScroll=function(el, minimalScroll){
+            if ( ! minimalScroll)
+                return _childPos(el);
+                
+			var p=el.parents(".mCSB_container");
+            
+        }
 		
 		/* returns element position according to content */
 		_childPos=function(el){
 			var p=el.parents(".mCSB_container");
+			var container = el.parents('.mCSB_inside');
+            
+            var topAbove = el.offset().top - container.offset().top < 0;
+            var bottomBelow = el.offset().top+el.outerHeight(true) - (container.offset().top + container.innerHeight()) > 0;
+            var childBiggerThanView = el.outerHeight(true) - container.innerHeight() > 0;
+            
 			return [el.offset().top-p.offset().top,el.offset().left-p.offset().left];
 		},
 		/* -------------------- */
