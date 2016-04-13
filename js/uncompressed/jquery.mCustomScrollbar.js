@@ -2354,10 +2354,23 @@ and dependencies (minified).
                 
 			var container = el.parents('.mCSB_inside');
             
-            y += el.innerHeight() - container.outerHeight(true);
-            x += el.innerWidth() - container.outerWidth(true);
+            var childBiggerThanView = [
+                el.innerHeight() - container.innerHeight() > 0,
+                el.innerWidth() - container.innerWidth() > 0];
+            
+            var endNotVisible = [
+                el.offset().top+el.innerHeight() - (container.offset().top + container.outerHeight(true)) > 0,                
+                el.offset().left+el.innerWidth() - (container.offset().left + container.outerWidth(true)) > 0];
+            
+            if ( ! childBiggerThanView[0] && endNotVisible[0]){
+                //scroll to bottom
+                y += el.innerHeight() - container.outerHeight(true);
+            }
+            if ( ! childBiggerThanView[1] && endNotVisible[1]){
+                //scroll to right
+                x += el.innerWidth() - container.outerWidth(true);
+            }
             return [y,x];
-
         }
 		
 		/* returns element position according to content */
