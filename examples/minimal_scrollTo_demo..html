@@ -106,7 +106,7 @@
 						outputTXTdata=  "'"+data+"'",
 						outputTXThref= "'"+href+"'",
 						outputTXT="$('"+el+"').find('.mCSB_container').find("+outputTXTdata+")" ;
-					$(el).mCustomScrollbar("scrollTo",to);
+					$(el).mCustomScrollbar("scrollTo",to, {minimalScroll:true});
 					output.text("$('"+el+"').mCustomScrollbar('scrollTo',"+outputTXT+");");
 				});
 				

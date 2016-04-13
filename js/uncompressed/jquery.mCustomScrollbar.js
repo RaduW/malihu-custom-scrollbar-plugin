@@ -647,10 +647,9 @@ and dependencies (minified).
 							methodOptions=$.extend(true,{},methodDefaults,options),
 							to=_arr.call(this,val),dur=methodOptions.scrollInertia>0 && methodOptions.scrollInertia<17 ? 17 : methodOptions.scrollInertia;
 						
-						/* translate yx values to actual scroll-to positions */
-						to[0]=_to.call(this,to[0],"y");
-						to[1]=_to.call(this,to[1],"x");
-						
+                        to[0]=_to.call(this,to[0],"y",options.minimalScroll);
+                        to[1]=_to.call(this,to[1],"x", options.minimalScroll);
+                        
 						/* 
 						check if scroll-to value moves the dragger instead of content. 
 						Only pixel values apply on dragger (e.g. 100, "100px", "-=100" etc.) 
@@ -1844,12 +1843,9 @@ and dependencies (minified).
 		},
 		/* -------------------- */
 		
-        //TODO RaduW. 11.04.2016 ... before evaluating _childPos check weather minimal Scroll is necessary
-        //if minimalScroll then replace _childPos to something else
-        //probably enhance _childPos with a function that also takes a "minimalScroll" flag and act accordingly
 
 		/* translates values (e.g. "top", 100, "100px", "#id") to actual scroll-to positions */
-		_to=function(val,dir){
+		_to=function(val,dir, minimalScroll){
 			if(val==null || typeof val=="undefined"){return;}
 			var $this=$(this),d=$this.data(pluginPfx),o=d.opt,
 				mCSB_container=$("#mCSB_"+d.idx+"_container"),
@@ -1866,7 +1862,8 @@ and dependencies (minified).
 				case "object": /* js/jquery object */
 					var obj=val.jquery ? val : $(val);
 					if(!obj.length){return;}
-					return dir==="x" ? _childPos(obj)[1] : _childPos(obj)[0];
+                    var shouldScroll = _shouldScroll(obj,minimalScroll);
+					return dir==="x" ? (shouldScroll[1]? _necessaryScroll(obj,minimalScroll)[1]:null) :(shouldScroll[0] ? _necessaryScroll(obj,minimalScroll)[0]:null);
 					break;
 				case "string": case "number":
 					if(_isNumeric(val)){ /* numeric value */
@@ -1889,10 +1886,13 @@ and dependencies (minified).
 							return Math.abs(wrapper.width()-mCSB_container.outerWidth(false));
 						}else if(val==="first" || val==="last"){
 							var obj=mCSB_container.find(":"+val);
-							return dir==="x" ? _childPos(obj)[1] : _childPos(obj)[0];
+                            var shouldScroll = _shouldScroll(obj,minimalScroll);
+                            return dir==="x" ? (shouldScroll[1]? _necessaryScroll(obj,minimalScroll)[1]:null) :(shouldScroll[0] ? _necessaryScroll(obj,minimalScroll)[0]:null);
 						}else{
 							if($(val).length){ /* jquery selector */
-								return dir==="x" ? _childPos($(val))[1] : _childPos($(val))[0];
+                                var obj = $(val);
+                                var shouldScroll = _shouldScroll(obj,minimalScroll);
+                                return dir==="x" ? (shouldScroll[1]? _necessaryScroll(obj,minimalScroll)[1]:null) :(shouldScroll[0] ? _necessaryScroll(obj,minimalScroll)[0]:null);
 							}else{ /* other values (e.g. "100em") */
 								mCSB_container.css(cssProp,val);
 								methods.update.call(null,$this[0]);
@@ -2330,13 +2330,34 @@ and dependencies (minified).
 		},
 		/* -------------------- */
 		
+        _shouldScroll=function(el,minimalScroll){
+            if (! minimalScroll)
+                return [true,true]; //should scroll on both x and y
+
+   			var p=el.parents(".mCSB_container");
+			var container = el.parents('.mCSB_inside');
+            
+            var shouldScrollX = (el.offset().left - container.offset().left < 0) ||(el.offset().left+el.innerWidth() - container.offset().left - container.outerWidth(true) > 0);
+            var shouldScrollY = (el.offset().top - container.offset().top < 0) || (el.offset().top+el.innerHeight() - container.offset().top - container.outerHeight(true) > 0);
+            
+            return [shouldScrollY, shouldScrollX];
+        }
+        
         /*returns necerssary scroll position of an element*/
         _necessaryScroll=function(el, minimalScroll){
+			var p = el.parents(".mCSB_container"),
+                y = el.offset().top-p.offset().top,
+                x = el.offset().left-p.offset().left;
+
             if ( ! minimalScroll)
-                return _childPos(el);
+                return [y,x];
                 
-			var p=el.parents(".mCSB_container");
+			var container = el.parents('.mCSB_inside');
             
+            y += el.innerHeight() - container.outerHeight(true);
+            x += el.innerWidth() - container.outerWidth(true);
+            return [y,x];
+
         }
 		
 		/* returns element position according to content */
@@ -2345,10 +2366,17 @@ and dependencies (minified).
 			var container = el.parents('.mCSB_inside');
             
             var topAbove = el.offset().top - container.offset().top < 0;
-            var bottomBelow = el.offset().top+el.outerHeight(true) - (container.offset().top + container.innerHeight()) > 0;
-            var childBiggerThanView = el.outerHeight(true) - container.innerHeight() > 0;
+            var bottomBelow = el.offset().top+el.innerHeight() - (container.offset().top + container.outerHeight(true)) > 0;
+            var childBiggerThanView = el.innerHeight(true) - container.innerHeight() > 0;
             
-			return [el.offset().top-p.offset().top,el.offset().left-p.offset().left];
+            //testing with align to bottom
+            var y = el.offset().top-p.offset().top;
+            var x =el.offset().left-p.offset().left;
+            y = y- container.outerHeight(true) + el.innerHeight();
+            x = x- container.outerWidth(true) + el.innerWidth();
+            return [y,x];
+            
+			//return [el.offset().top-p.offset().top,el.offset().left-p.offset().left];
 		},
 		/* -------------------- */
 		
