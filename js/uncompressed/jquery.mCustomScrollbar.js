@@ -647,8 +647,8 @@ and dependencies (minified).
 							methodOptions=$.extend(true,{},methodDefaults,options),
 							to=_arr.call(this,val),dur=methodOptions.scrollInertia>0 && methodOptions.scrollInertia<17 ? 17 : methodOptions.scrollInertia;
 						
-                        to[0]=_to.call(this,to[0],"y",options.minimalScroll);
-                        to[1]=_to.call(this,to[1],"x", options.minimalScroll);
+                        to[0]=_to.call(this,to[0],"y",options?options.minimalScroll:false);
+                        to[1]=_to.call(this,to[1],"x", options?options.minimalScroll:false);
                         
 						/* 
 						check if scroll-to value moves the dragger instead of content. 
@@ -2338,7 +2338,7 @@ and dependencies (minified).
             
             //only one bound should be outside (not both), if both bounds are outside the view is filled by the elment but the element is simply to big
             //to fit in (no need to scroll).
-            return [bounds.topOutside ^ bounds.bottomOutside, bounds.leftOutside ^ bounds.RightOutside];
+            return [bounds.topOutside ^ bounds.bottomOutside, bounds.leftOutside ^ bounds.rightOutside];
         }
         
         _getBoundsOverflow=function(el){
@@ -2382,7 +2382,7 @@ and dependencies (minified).
                     x += el.innerWidth() - container.outerWidth(true);
             }
             else{
-                if ( bounds.righOutside)
+                if ( bounds.rightOutside)
                      x += el.innerWidth() - container.outerWidth(true);
             }
             return [y,x];
