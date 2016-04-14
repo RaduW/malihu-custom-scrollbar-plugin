@@ -2334,13 +2334,21 @@ and dependencies (minified).
             if (! minimalScroll)
                 return [true,true]; //should scroll on both x and y
 
-   			var p=el.parents(".mCSB_container");
+            var bounds = _getBoundsOverflow(el);
+            
+            //only one bound should be outside (not both), if both bounds are outside the view is filled by the elment but the element is simply to big
+            //to fit in (no need to scroll).
+            return [bounds.topOutside ^ bounds.bottomOutside, bounds.leftOutside ^ bounds.RightOutside];
+        }
+        
+        _getBoundsOverflow=function(el){
 			var container = el.parents('.mCSB_inside');
-            
-            var shouldScrollX = (el.offset().left - container.offset().left < 0) ||(el.offset().left+el.innerWidth() - container.offset().left - container.outerWidth(true) > 0);
-            var shouldScrollY = (el.offset().top - container.offset().top < 0) || (el.offset().top+el.innerHeight() - container.offset().top - container.outerHeight(true) > 0);
-            
-            return [shouldScrollY, shouldScrollX];
+            return{
+                leftOutside: el.offset().left - container.offset().left < 0,
+                rightOutside: el.offset().left+el.innerWidth() - container.offset().left - container.outerWidth(true) > 0,
+                topOutside: el.offset().top - container.offset().top < 0,
+                bottomOutside:el.offset().top+el.innerHeight() - container.offset().top - container.outerHeight(true) > 0
+            }
         }
         
         /*returns necerssary scroll position of an element*/
@@ -2351,24 +2359,31 @@ and dependencies (minified).
 
             if ( ! minimalScroll)
                 return [y,x];
+            
+            var bounds = _getBoundsOverflow(el);
                 
 			var container = el.parents('.mCSB_inside');
             
             var childBiggerThanView = [
-                el.innerHeight() - container.innerHeight() > 0,
-                el.innerWidth() - container.innerWidth() > 0];
+                 el.innerHeight() - container.innerHeight() > 0,
+                 el.innerWidth() - container.innerWidth() > 0];
             
-            var endNotVisible = [
-                el.offset().top+el.innerHeight() - (container.offset().top + container.outerHeight(true)) > 0,                
-                el.offset().left+el.innerWidth() - (container.offset().left + container.outerWidth(true)) > 0];
-            
-            if ( ! childBiggerThanView[0] && endNotVisible[0]){
-                //scroll to bottom
-                y += el.innerHeight() - container.outerHeight(true);
+            if ( childBiggerThanView[0]){
+                if (bounds.topOutside )
+                    y += el.innerHeight() - container.outerHeight(true);
             }
-            if ( ! childBiggerThanView[1] && endNotVisible[1]){
-                //scroll to right
-                x += el.innerWidth() - container.outerWidth(true);
+            else{
+                if ( bounds.bottomOutside)
+                    y += el.innerHeight() - container.outerHeight(true);
+            }
+            
+            if ( childBiggerThanView[1]){
+                if ( bounds.leftOutside)
+                    x += el.innerWidth() - container.outerWidth(true);
+            }
+            else{
+                if ( bounds.righOutside)
+                     x += el.innerWidth() - container.outerWidth(true);
             }
             return [y,x];
         }
@@ -2376,20 +2391,7 @@ and dependencies (minified).
 		/* returns element position according to content */
 		_childPos=function(el){
 			var p=el.parents(".mCSB_container");
-			var container = el.parents('.mCSB_inside');
-            
-            var topAbove = el.offset().top - container.offset().top < 0;
-            var bottomBelow = el.offset().top+el.innerHeight() - (container.offset().top + container.outerHeight(true)) > 0;
-            var childBiggerThanView = el.innerHeight(true) - container.innerHeight() > 0;
-            
-            //testing with align to bottom
-            var y = el.offset().top-p.offset().top;
-            var x =el.offset().left-p.offset().left;
-            y = y- container.outerHeight(true) + el.innerHeight();
-            x = x- container.outerWidth(true) + el.innerWidth();
-            return [y,x];
-            
-			//return [el.offset().top-p.offset().top,el.offset().left-p.offset().left];
+            return [el.offset().top-p.offset().top,el.offset().left-p.offset().left];
 		},
 		/* -------------------- */
 		
