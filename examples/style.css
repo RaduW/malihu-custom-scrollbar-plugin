@@ -774,6 +774,11 @@ body.colorbox-demo #cboxContent, body.colorbox-demo #cboxContent p, body.colorbo
 	background-color: #333;
 	-webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px;
 }
+#test-id{
+	background-color: #eb3755;
+	color: #fff;
+    width: 700px;
+}
 
 .scrollTo-demo .demo-x hr + p{ margin-left: 0; }
 
@@ -790,10 +795,6 @@ body.colorbox-demo #cboxContent, body.colorbox-demo #cboxContent p, body.colorbo
 	padding: 3px 15px;
 }
 
-#test-id{
-	background-color: #eb3755;
-	color: #fff;
-}
 
 .rtl-demo #content-1{ width: 500px; }
 

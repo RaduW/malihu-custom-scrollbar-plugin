@@ -33,17 +33,30 @@
 			<div class="scrollTo">
 				<ul>
 					<li><span>Content y &rarr;</span></li>
-					<li><a href="#" rel="content-y" data-scroll-to="p:eq(1)">1st paragraph</a></li>
-					<li><a href="#" rel="content-y" data-scroll-to="p:eq(2)">2nd paragraph</a></li>
-					<li><a href="#" rel="content-y" data-scroll-to="p:eq(3)">3rd paragraph</a></li>
-					<li><a href="#" rel="content-y" data-scroll-to="p:eq(4)">4th paragraph</a></li>
-					<li><a href="#" rel="content-y" data-scroll-to="p:eq(5)">5th paragraph</a></li>
-					<li><a href="#" rel="content-y" data-scroll-to="p:eq(6)">6th paragraph</a></li>
-					<li><a href="#" rel="content-y" data-scroll-to="p:eq(11)">11th paragraph</a></li>
-					<li><a href="#" rel="content-y" data-scroll-to="p:eq(12)">12th paragraph</a></li>
-					<li><a href="#" rel="content-y" data-scroll-to="p:eq(13)">13th paragraph</a></li>
-					<li><a href="#" rel="content-y" data-scroll-to="p:eq(14)">14th paragraph</a></li>
-					<li><a href="#" rel="content-y" data-scroll-to="p:eq(15)">15th paragraph</a></li>
+					<li><a href="#" rel="content-y" data-scroll-to="p:eq(0)">1st paragraph</a></li>
+					<li><a href="#" rel="content-y" data-scroll-to="p:eq(1)">2nd paragraph</a></li>
+					<li><a href="#" rel="content-y" data-scroll-to="p:eq(2)">3rd paragraph</a></li>
+					<li><a href="#" rel="content-y" data-scroll-to="p:eq(3)">4th paragraph</a></li>
+					<li ><a href="#" rel="content-y" data-scroll-to="p:eq(4)" style="font-weight:900; color:red">5th paragraph</a></li>
+					<li><a href="#" rel="content-y" data-scroll-to="p:eq(5)">6th paragraph</a></li>
+					<li><a href="#" rel="content-y" data-scroll-to="p:eq(10)">11th paragraph</a></li>
+					<li><a href="#" rel="content-y" data-scroll-to="p:eq(11)">12th paragraph</a></li>
+					<li><a href="#" rel="content-y" data-scroll-to="p:eq(12)">13th paragraph</a></li>
+					<li><a href="#" rel="content-y" data-scroll-to="p:eq(13)">14th paragraph</a></li>
+					<li><a href="#" rel="content-y" data-scroll-to="p:eq(14)">15th paragraph</a></li>
+				</ul>
+			</div>
+   			<div class="scrollTo">
+				<ul>
+					<li><span>Content x &rarr;</span></li>
+					<li><a href="#" rel="content-x" data-scroll-to="p:eq(0)">1st paragraph</a></li>
+					<li><a href="#" rel="content-x" data-scroll-to="p:eq(1)">2nd paragraph</a></li>
+					<li><a href="#" rel="content-x" data-scroll-to="p:eq(2)">3rd paragraph</a></li>
+					<li><a href="#" rel="content-x" data-scroll-to="p:eq(3)" style="font-weight:900; color:red">4th paragraph</a></li>
+					<li><a href="#" rel="content-x" data-scroll-to="p:eq(4)">5th paragraph</a></li>
+					<li><a href="#" rel="content-x" data-scroll-to="p:eq(5)">6th paragraph</a></li>
+					<li><a href="#" rel="content-x" data-scroll-to="p:eq(6)">7th paragraph</a></li>
+					<li><a href="#" rel="content-x" data-scroll-to="p:eq(7)">8th paragraph</a></li>
 				</ul>
 			</div>
 			<p>Function called: <code>&nbsp;</code></p>
@@ -73,7 +86,23 @@
 				<hr />
 				<p>15th End of content.</p>
 			</div>
-			
+						
+			<!-- content -->
+			<div class="content demo-x">
+                <div style="min-width:3180px">
+				<h2>Content x</h2>
+				<hr />
+				<p>1st Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p> 
+				<p>2nd Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+				<p>3rd Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p> 
+				<p id="test-id">4th Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p> 
+				<p>5th Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
+				<p>6th Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.</p> 
+				<p>7th Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p> 
+				<p>8th End of content.</p>
+                </div>
+			</div>
+
 		</section>
 	</div>
 	
@@ -90,6 +119,7 @@
 	<script src="../js/uncompressed/jquery.mCustomScrollbar.js"></script>
 	
 	<script>
+        /*
 		(function($){
 			$(window).load(function(){
 				
@@ -110,6 +140,41 @@
 						outputTXThref= "'"+href+"'",
 						outputTXT="$('"+el+"').find('.mCSB_container').find("+outputTXTdata+")" ;
 					$(el).mCustomScrollbar("scrollTo",to, {minimalScroll:true});
+					output.text("$('"+el+"').mCustomScrollbar('scrollTo',"+outputTXT+");");
+				});
+				
+			});
+		})(jQuery);
+        */
+        		(function($){
+			$(window).load(function(){
+				
+				$.mCustomScrollbar.defaults.theme="light-2"; //set "light-2" as the default theme
+				
+				$(".demo-y").mCustomScrollbar();
+				
+				$(".demo-x").mCustomScrollbar({
+					axis:"x",
+					advanced:{autoExpandHorizontalScroll:true}
+				});
+				
+				$(".demo-yx").mCustomScrollbar({
+					axis:"yx"
+				});
+				
+				$(".scrollTo a").click(function(e){
+					e.preventDefault();
+					var $this=$(this),
+						rel=$this.attr("rel"),
+						el=rel==="content-y" ? ".demo-y" : rel==="content-x" ? ".demo-x" : ".demo-yx",
+						data=$this.data("scroll-to"),
+						href=$this.attr("href").split(/#(.+)/)[1],
+						to=data ? $(el).find(".mCSB_container").find(data) : el===".demo-yx" ? eval("("+href+")") : href,
+						output=$("#info > p code"),
+						outputTXTdata=el===".demo-yx" ? data : "'"+data+"'",
+						outputTXThref=el===".demo-yx" ? href : "'"+href+"'",
+						outputTXT=data ? "$('"+el+"').find('.mCSB_container').find("+outputTXTdata+")" : outputTXThref;
+					$(el).mCustomScrollbar("scrollTo",to,{minimalScroll:true});
 					output.text("$('"+el+"').mCustomScrollbar('scrollTo',"+outputTXT+");");
 				});
 				
